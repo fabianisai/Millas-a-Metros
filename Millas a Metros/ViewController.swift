@@ -34,18 +34,26 @@ class ViewController: UIViewController {
         
         let selectedIndex = segmentedControl.selectedSegmentIndex
         
-        let textFieldVal = Double(distanceTextFiled.text!)!
+        if let textFieldString=distanceTextFiled.text {
         
-        // print("Hemos seleciconado \(selectedIndex)")
-        
-        if selectedIndex == 0 {
-            let convertedValue = textFieldVal / mileUnit
-            reloadView(textFieldVal : textFieldVal,convertedValue: convertedValue)
-        } else if selectedIndex == 1 {
-            let convertedValue = textFieldVal * mileUnit
-            reloadView(textFieldVal : textFieldVal,convertedValue: convertedValue)
-        } else {
-            print("Ningun caso debe estar aqui")
+            if let textFieldVal = Double(textFieldString) {
+            
+                    // print("Hemos seleciconado \(selectedIndex)")
+                
+                    if selectedIndex == 0 {
+                        let convertedValue = textFieldVal / mileUnit
+                        reloadView(textFieldVal : textFieldVal,convertedValue: convertedValue)
+                    } else if selectedIndex == 1 {
+                        let convertedValue = textFieldVal * mileUnit
+                        reloadView(textFieldVal : textFieldVal,convertedValue: convertedValue)
+                    } else {
+                        print("Ningun caso debe estar aqui")
+                    }
+            } else{
+                resultadoLabel.text="Escribe un valor numerico"
+            }
+        } else{
+            resultadoLabel.text="Escribe algun valor"
         }
         
     }
